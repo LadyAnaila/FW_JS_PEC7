@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { LoginComponent } from './login/login.component';
-import { AuthStoreGuard } from './auth-store.guard';
+import { RegisterComponent } from './register/register.component';
+import { ArticleListComponent } from './article-list/article-list.component';
+import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-reactive.component'; 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'article/:id', component: ArticleDetailComponent, canActivate: [AuthStoreGuard] },
-
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, 
-  { path: '**', redirectTo: '/login' }
+  { path: 'register', component: RegisterComponent },
+  { path: 'articles', component: ArticleListComponent },
+  { path: 'create-article', component: ArticleNewReactiveComponent } 
 ];
 
 @NgModule({
