@@ -8,6 +8,7 @@
             <div class="navbar-nav">
                 <a class="nav-link active" (click)="mostraArticleList()">Articulos</a>
                 <a class="nav-link" (click)="mostraFormReactive()">Nuevo articulo reactive</a>
+                <a class="nav-link active" (click)="mostraLogin()">Login</a>
             </div>
         </div>
     </div>
@@ -16,4 +17,6 @@
 <div>
     <app-article-list *ngIf="opcioArticleList"></app-article-list>
     <app-article-new-reactive *ngIf="opcioFormReactive"></app-article-new-reactive>
+    <app-login *ngIf="opcioLogin"> </app-login>
+
 </div>
