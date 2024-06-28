@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,7 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { AuthService } from './auth.service';
 import { AuthStoreGuard } from './auth-store.guard';
 
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import { AuthStoreGuard } from './auth-store.guard';
      AppRoutingModule,
      HttpClientModule
   ],
-  providers: [AuthService, AuthStoreGuard],
+  providers: [AuthService, 
+    AuthStoreGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   
   bootstrap: [AppComponent]
 })
