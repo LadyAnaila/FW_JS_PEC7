@@ -1,7 +1,7 @@
-<div class="article-item" [ngClass]="{ sale: article.isOnSale }">
-  <img [src]="article.imageUrl | imageArticle" alt="Botella de vino" (click)="viewDetails()">
-  <div class="details">
-    <div>{{ article.name }}</div>
+<div *ngIf="article">
+    <h1>{{ article.name }}</h1>
+    <img [src]="article.imageUrl" alt="{{ article.name }}">
+    <p>{{ article.description }}</p>
     <div [ngClass]="{ salePrice: !article.isOnSale }">{{ article.price }} €</div>
     <div *ngIf="article.isOnSale">
       <button *ngIf="article.quantityInCart > 0" (click)="decrementInCart()">
@@ -11,4 +11,4 @@
       <button (click)="incrementInCart()">+</button>
     </div>
   </div>
-</div>
+  

@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
+import { AppRoutingModule } from './app-routing.module'; 
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { ArticleListComponent } from './article-list/article-list.component';
@@ -13,7 +14,10 @@ import { ArticleNewReactiveComponent } from './article-new-reactive/article-new-
 import { ArticleItemComponent } from './article-item/article-item.component';
 import { ImageArticlePipe } from './pipes/image-article.pipe';
 import { RegisterComponent } from './register/register.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
 
+import { AuthService } from './auth.service';
+import { AuthStoreGuard } from './auth-store.guard';
 
 
 @NgModule({
@@ -25,15 +29,18 @@ import { RegisterComponent } from './register/register.component';
     ArticleItemComponent,
     ImageArticlePipe,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,
      FormsModule,
      ReactiveFormsModule,
+     AppRoutingModule,
      HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService, AuthStoreGuard],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

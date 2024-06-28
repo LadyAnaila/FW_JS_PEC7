@@ -46,6 +46,7 @@ export class ArticleNewReactiveComponent {
       let wine = {
         id: null,
         name: this.article.value.name,
+        description: this.article.value.description,
         imageUrl: this.article.value.imageUrl,
         price: this.article.value.price,
         foodPairing: [],
