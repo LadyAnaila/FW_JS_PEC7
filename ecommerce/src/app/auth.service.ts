@@ -11,10 +11,18 @@ export class AuthService {
     { username: 'user2', password: 'password2' }
   ];
 
+  constructor() {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    if (token) {
+      this.setToken(token);
+    }
+  }
+
   authenticate(username: string, password: string): boolean {
     const authenticated = this.users.some(user => user.username === username && user.password === password);
     if (authenticated) {
-      this.setToken('fake-token'); // Generar y almacenar un token falso
+      const token = 'fake-token'; // Deberías generar un token real aquí
+      this.setToken(token);
     }
     return authenticated;
   }

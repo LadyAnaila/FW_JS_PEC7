@@ -8,26 +8,27 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+
+  public loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.createForm();
+  }
+
+  createForm() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      const username = this.loginForm.get('username')?.value;
-      const password = this.loginForm.get('password')?.value;
-      if (this.authService.authenticate(username, password)) {
-        console.log('Login exitoso');
-      } else {
-        console.log('Login fallido');
-      }
-    } else {
-      console.log('Formulario no válido');
-    }
+  onSubmit() {
+    const { username, password } = this.loginForm.value;
+    if (this.authService.authenticate(username, password)) {
+      console.log('Login con éxito');
+     } else {
+      console.log('Credenciales inválidas');
+     }
   }
+
 }
