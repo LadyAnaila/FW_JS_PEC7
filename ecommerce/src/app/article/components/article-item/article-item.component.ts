@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Article } from '../models/article';
-import { ArticleQuantityChange } from '../models/article-quantity-change';
+import { Article } from '../../../models/article';
+import { ArticleQuantityChange } from '../../../models/article-quantity-change';
 
 @Component({
   selector: 'app-article-item',
