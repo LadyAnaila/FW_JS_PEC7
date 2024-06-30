@@ -14,7 +14,10 @@ export class AuthService {
   constructor() {
     const token = localStorage.getItem(this.TOKEN_KEY);
     if (token) {
+      console.log('Token found in local storage:', token);
       this.setToken(token);
+    } else {
+      console.log('No token found in local storage.');
     }
   }
 
@@ -23,6 +26,9 @@ export class AuthService {
     if (authenticated) {
       const token = 'fake-token'; // Deberías generar un token real aquí
       this.setToken(token);
+      console.log('Token set in local storage:', token);
+    } else {
+      console.log('Authentication failed for user:', username);
     }
     return authenticated;
   }
@@ -30,14 +36,17 @@ export class AuthService {
   register(username: string, password: string): boolean {
     const userExists = this.users.some(user => user.username === username);
     if (userExists) {
+      console.log('User already exists:', username);
       return false; // Usuario ya existe
     }
     this.users.push({ username, password });
+    console.log('User registered successfully:', username);
     return true; // Registro exitoso
   }
 
   private setToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
+    console.log('Token saved to local storage:', token);
   }
 
   getToken(): string | null {
@@ -46,6 +55,7 @@ export class AuthService {
 
   private removeToken(): void {
     localStorage.removeItem(this.TOKEN_KEY);
+    console.log('Token removed from local storage.');
   }
 
   isAuthenticated(): boolean {

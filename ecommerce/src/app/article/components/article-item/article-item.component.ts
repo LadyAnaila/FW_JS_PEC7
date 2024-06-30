@@ -9,6 +9,8 @@ import { ArticleQuantityChange } from '../../../models/article-quantity-change';
   styleUrls: ['./article-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
+
 export class ArticleItemComponent {
   @Input() public article: Article;
   @Output() public quantityChange: EventEmitter<ArticleQuantityChange> = new EventEmitter();

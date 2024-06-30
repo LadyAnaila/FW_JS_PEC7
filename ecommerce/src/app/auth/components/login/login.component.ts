@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service'; 
-
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +9,13 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
   public loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService, 
+    private router: Router
+  ) {
     this.createForm();
   }
 
@@ -27,9 +30,9 @@ export class LoginComponent {
     const { username, password } = this.loginForm.value;
     if (this.authService.authenticate(username, password)) {
       console.log('Login con éxito');
-     } else {
+      this.router.navigate(['/articles']); // redirige a la página de artículos
+    } else {
       console.log('Credenciales inválidas');
-     }
+    }
   }
-
 }
